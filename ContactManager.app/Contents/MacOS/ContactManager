@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get the directory where this app bundle is located
+APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../" && pwd)"
+cd "$APP_DIR"
+
+# Check if GTK4 is available
+if ! pkg-config --exists gtk4; then
+    osascript -e 'display dialog "GTK4 is not installed on this system. Please install GTK4 development libraries using Homebrew: brew install gtk4" buttons {"OK"} default button "OK"'
+    exit 1
+fi
+
+# Check if the executable exists, if not compile it
+if [ ! -f "contact_manager" ] || [ "main.c" -nt "contact_manager" ]; then
+    echo "Compiling Contact Manager..."
+    gcc $(pkg-config --cflags gtk4) -o contact_manager main.c $(pkg-config --libs gtk4)
+    
+    if [ $? -ne 0 ]; then
+        osascript -e 'display dialog "Failed to compile Contact Manager!" buttons {"OK"} default button "OK"'
+        exit 1
+    fi
+fi
+
+# Run the program
+./contact_manager

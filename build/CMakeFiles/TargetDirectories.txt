@@ -1,0 +1,3 @@
+/Users/mubinsompod/Documents/Code/c++/project_1-1/build/CMakeFiles/contact_manager.dir
+/Users/mubinsompod/Documents/Code/c++/project_1-1/build/CMakeFiles/edit_cache.dir
+/Users/mubinsompod/Documents/Code/c++/project_1-1/build/CMakeFiles/rebuild_cache.dir
