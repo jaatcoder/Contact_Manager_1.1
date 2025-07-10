@@ -15,7 +15,6 @@ typedef struct {
     char group[20];
 } Contact;
 
-// Forward declaration
 typedef struct _AppWidgets AppWidgets;
 
 typedef struct {
@@ -70,15 +69,12 @@ static gint sort_by_name(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gp
     gchar *name_a, *name_b;
     gint ret;
     
-    
     gtk_tree_model_get(model, a, 0, &name_a, -1);
     gtk_tree_model_get(model, b, 0, &name_b, -1);
-    
 
     if (name_a == NULL && name_b == NULL) {
         return 0;
     }
-    
     
     if (name_a == NULL) {
         g_free(name_b);
@@ -89,7 +85,6 @@ static gint sort_by_name(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gp
         g_free(name_a);
         return -1;
     }
-    
     
     ret = g_utf8_collate(g_utf8_casefold(name_a, -1), g_utf8_casefold(name_b, -1));
     
@@ -118,9 +113,7 @@ static void add_contact_to_list(AppWidgets *widgets, const char *name, const cha
                       3, group,
                       -1);
 
-
     g_print("Added contact: %s, %s, %s, %s\n", name, phone, email, group);
-    
 
     gboolean group_exists = FALSE;
     GtkTreeIter group_iter;
@@ -159,16 +152,13 @@ static void save_contact_to_file(const char *name, const char *phone, const char
 
 void load_groups_for_filter(AppWidgets *widgets) {
     GtkTreeIter iter;
-    
 
     gtk_list_store_append(widgets->group_store, &iter);
     gtk_list_store_set(widgets->group_store, &iter, 0, "All Groups", -1);
-    
 
     char groups[MAX_CONTACTS][20];
     int count = 0;
     get_unique_groups(groups, &count);
-    
 
     for (int i = 0; i < count; i++) {
         gtk_list_store_append(widgets->group_store, &iter);
@@ -186,19 +176,14 @@ void get_unique_groups(char groups[][20], int *count) {
     char name[50], contact[15], email[50], group[20];
     
     while (!feof(file)) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
-        
 
         int exists = 0;
         for (int i = 0; i < *count; i++) {
@@ -210,7 +195,7 @@ void get_unique_groups(char groups[][20], int *count) {
         
         if (!exists && *count < MAX_CONTACTS) {
             strncpy(groups[*count], line, 19);
-            groups[*count][19] = '\0';  
+            groups[*count][19] = '\0';
             (*count)++;
         }
     }
@@ -221,7 +206,6 @@ void get_unique_groups(char groups[][20], int *count) {
 
 int delete_contact_from_file(const char *name, const char *contact) {
     if (!name || !contact) return 0;
-    
 
     Contact contacts[MAX_CONTACTS];
     int count = 0;
@@ -233,25 +217,21 @@ int delete_contact_from_file(const char *name, const char *contact) {
     
     char line[256];
     while (!feof(file) && count < MAX_CONTACTS) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(contacts[count].name, line, sizeof(contacts[count].name) - 1);
         contacts[count].name[sizeof(contacts[count].name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(contacts[count].contact, line, sizeof(contacts[count].contact) - 1);
         contacts[count].contact[sizeof(contacts[count].contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(contacts[count].email, line, sizeof(contacts[count].email) - 1);
         contacts[count].email[sizeof(contacts[count].email) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(contacts[count].group, line, sizeof(contacts[count].group) - 1);
@@ -261,7 +241,6 @@ int delete_contact_from_file(const char *name, const char *contact) {
     }
     
     fclose(file);
-    
 
     file = fopen(CONTACTS_FILE, "w");
     if (file == NULL) {
@@ -270,7 +249,6 @@ int delete_contact_from_file(const char *name, const char *contact) {
     
     int deleted = 0;
     for (int i = 0; i < count; i++) {
-
         if (strcmp(contacts[i].name, name) == 0 && strcmp(contacts[i].contact, contact) == 0) {
             deleted = 1;
             continue;
@@ -286,9 +264,7 @@ int delete_contact_from_file(const char *name, const char *contact) {
 }
 
 static void load_contacts(AppWidgets *widgets) {
-
     g_print("Starting to load contacts...\n");
-    
 
     FILE *file = fopen(CONTACTS_FILE, "r");
     if (file == NULL) {
@@ -297,37 +273,31 @@ static void load_contacts(AppWidgets *widgets) {
     }
 
     g_print("File opened successfully.\n");
-    
 
     int count = 0;
     char name[50], contact[15], email[50], group[20];
     char line[256]; 
     
     while (!feof(file)) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(name, line, sizeof(name) - 1);
         name[sizeof(name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(contact, line, sizeof(contact) - 1);
         contact[sizeof(contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(email, line, sizeof(email) - 1);
         email[sizeof(email) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = 0;
         strncpy(group, line, sizeof(group) - 1);
         group[sizeof(group) - 1] = '\0';
-        
 
         g_print("Loading contact %d: %s, %s, %s, %s\n", count+1, name, contact, email, group);
         
@@ -337,7 +307,6 @@ static void load_contacts(AppWidgets *widgets) {
     
     fclose(file);
     g_print("Loaded %d contacts total.\n", count);
-    
 
     gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(widgets->list_store), 0, GTK_SORT_ASCENDING);
 }
@@ -360,7 +329,6 @@ static void add_clicked(GtkWidget *button, AppWidgets *widgets) {
         save_contact_to_file(name, phone, email, group);
         clear_entries(widgets);
         g_print("Contact added successfully: %s\n", name);
-        
 
         gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(widgets->list_store), 0, GTK_SORT_ASCENDING);
     }
@@ -385,7 +353,6 @@ static void group_filter_changed(GtkComboBox *combo, AppWidgets *widgets) {
 static gboolean filter_contacts(GtkTreeModel *model, GtkTreeIter *iter, gpointer data) {
     AppWidgets *widgets = (AppWidgets *)data;
     const char *search_text = gtk_editable_get_text(GTK_EDITABLE(widgets->search_entry));
-    
 
     GtkTreeIter combo_iter;
     gchar *selected_group = NULL;
@@ -399,12 +366,10 @@ static gboolean filter_contacts(GtkTreeModel *model, GtkTreeIter *iter, gpointer
     
     gboolean visible = FALSE;
     if (name && phone && email && group) {
-
         gboolean group_match = TRUE;
         if (selected_group && strcmp(selected_group, "All Groups") != 0) {
             group_match = (strcasecmp(group, selected_group) == 0);
         }
-        
 
         gboolean search_match = TRUE;
         if (search_text && strlen(search_text) > 0) {
@@ -430,17 +395,14 @@ static void delete_clicked(GtkWidget *button, AppWidgets *widgets) {
     
     if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
         gchar *name = NULL, *contact = NULL;
-        
 
         gtk_tree_model_get(model, &iter, 0, &name, 1, &contact, -1);
         
         if (name && contact) {
-
             DeleteDialogData *data = g_new(DeleteDialogData, 1);
             data->name = g_strdup(name);
             data->contact = g_strdup(contact);
             data->widgets = widgets;
-            
 
             GtkWidget *dialog = gtk_dialog_new_with_buttons("Confirm Delete",
                                                           GTK_WINDOW(widgets->window),
@@ -493,13 +455,11 @@ static void delete_clicked(GtkWidget *button, AppWidgets *widgets) {
 }
 
 static void activate(GtkApplication *app, gpointer user_data) {
-    AppWidgets *widgets = g_new0(AppWidgets, 1);  
-
+    AppWidgets *widgets = g_new0(AppWidgets, 1);
 
     widgets->window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(widgets->window), "Contact Manager");
     gtk_window_set_default_size(GTK_WINDOW(widgets->window), 800, 600);
-
 
     GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
     gtk_widget_set_margin_start(main_box, 10);
@@ -507,14 +467,11 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_widget_set_margin_top(main_box, 10);
     gtk_widget_set_margin_bottom(main_box, 10);
 
-
     GtkWidget *filter_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
-    
 
     widgets->search_entry = gtk_search_entry_new();
     gtk_widget_set_hexpand(widgets->search_entry, TRUE);
     g_signal_connect(widgets->search_entry, "search-changed", G_CALLBACK(search_changed), widgets);
-    
 
     widgets->group_store = gtk_list_store_new(1, G_TYPE_STRING);
     widgets->group_filter = gtk_combo_box_new_with_model(GTK_TREE_MODEL(widgets->group_store));
@@ -524,7 +481,6 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(widgets->group_filter), renderer, "text", 0, NULL);
     
     g_signal_connect(widgets->group_filter, "changed", G_CALLBACK(group_filter_changed), widgets);
-    
 
     gtk_box_append(GTK_BOX(filter_box), gtk_label_new("Filter by Group:"));
     gtk_box_append(GTK_BOX(filter_box), widgets->group_filter);
@@ -533,9 +489,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     
     gtk_widget_set_margin_bottom(filter_box, 10);
 
-
     widgets->list_store = gtk_list_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-    
 
     gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(widgets->list_store), 0, sort_by_name, NULL, NULL);
     
@@ -544,7 +498,6 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
     widgets->contact_list = gtk_tree_view_new_with_model(GTK_TREE_MODEL(filter));
     
-    
     const char *titles[] = {"Name", "Phone", "Email", "Group"};
     for (int i = 0; i < 4; i++) {
         GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes(
@@ -552,20 +505,16 @@ static void activate(GtkApplication *app, gpointer user_data) {
         );
         gtk_tree_view_append_column(GTK_TREE_VIEW(widgets->contact_list), column);
         
-    
         gtk_tree_view_column_set_clickable(column, TRUE);
         gtk_tree_view_column_set_sort_column_id(column, i);
     }
 
-    
     GtkWidget *scrolled = gtk_scrolled_window_new();
     gtk_scrolled_window_set_min_content_height(GTK_SCROLLED_WINDOW(scrolled), 300);
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrolled), widgets->contact_list);
 
-    
     GtkWidget *form_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    
-    
+
     widgets->name_entry = gtk_entry_new();
     widgets->phone_entry = gtk_entry_new();
     widgets->email_entry = gtk_entry_new();
@@ -576,23 +525,18 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_entry_set_placeholder_text(GTK_ENTRY(widgets->email_entry), "Email");
     gtk_entry_set_placeholder_text(GTK_ENTRY(widgets->group_entry), "Group");
 
-    
     GtkWidget *button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
     gtk_widget_set_margin_top(button_box, 10);
-    
-    
+
     GtkWidget *add_button = gtk_button_new_with_label("Add Contact");
     g_signal_connect(add_button, "clicked", G_CALLBACK(add_clicked), widgets);
-    
-    
+
     widgets->delete_button = gtk_button_new_with_label("Delete Contact");
     g_signal_connect(widgets->delete_button, "clicked", G_CALLBACK(delete_clicked), widgets);
-    
-    
+
     gtk_box_append(GTK_BOX(button_box), add_button);
     gtk_box_append(GTK_BOX(button_box), widgets->delete_button);
-    
-    
+
     gtk_box_append(GTK_BOX(main_box), filter_box);
     gtk_box_append(GTK_BOX(main_box), scrolled);
     gtk_box_append(GTK_BOX(form_box), widgets->name_entry);
@@ -604,14 +548,11 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
     gtk_window_set_child(GTK_WINDOW(widgets->window), main_box);
 
-    
     gtk_window_present(GTK_WINDOW(widgets->window));
-    
-    
+
     load_groups_for_filter(widgets);
     load_contacts(widgets);
-    
-    
+
     gtk_combo_box_set_active(GTK_COMBO_BOX(widgets->group_filter), 0);
 }
 
@@ -659,25 +600,21 @@ void terminal_show_contacts() {
 
     char line[256];
     while (!feof(file) && count < MAX_CONTACTS) {
-        // Read name
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].name, line, sizeof(contacts[count].name) - 1);
         contacts[count].name[sizeof(contacts[count].name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].contact, line, sizeof(contacts[count].contact) - 1);
         contacts[count].contact[sizeof(contacts[count].contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].email, line, sizeof(contacts[count].email) - 1);
         contacts[count].email[sizeof(contacts[count].email) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].group, line, sizeof(contacts[count].group) - 1);
@@ -687,7 +624,6 @@ void terminal_show_contacts() {
     }
     
     fclose(file);
-
 
     qsort(contacts, count, sizeof(Contact), compare_contacts);
 
@@ -700,32 +636,26 @@ void terminal_show_contacts() {
 
 
 void terminal_show_by_group() {
-
     char groups[MAX_CONTACTS][20];
     int group_count = 0;
     get_unique_groups(groups, &group_count);
-    
 
     printf("Available groups:\n");
     for (int i = 0; i < group_count; i++) {
         printf("%d. %s\n", i + 1, groups[i]);
     }
-    
 
     int choice;
     printf("\nEnter group number (1-%d): ", group_count);
     if (scanf("%d", &choice) != 1 || choice < 1 || choice > group_count) {
         printf("Invalid choice!\n");
-
         int c;
         while ((c = getchar()) != '\n' && c != EOF);
         return;
     }
-    
 
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
-    
 
     char selected_group[20];
     strcpy(selected_group, groups[choice - 1]);
@@ -744,30 +674,25 @@ void terminal_show_by_group() {
     char name[50], contact[15], email[50], group[20];
     
     while (!feof(file) && filtered_count < MAX_CONTACTS) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(name, line, sizeof(name) - 1);
         name[sizeof(name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contact, line, sizeof(contact) - 1);
         contact[sizeof(contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(email, line, sizeof(email) - 1);
         email[sizeof(email) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(group, line, sizeof(group) - 1);
         group[sizeof(group) - 1] = '\0';
-        
 
         if (strcasecmp(group, selected_group) == 0) {
             strcpy(filtered_contacts[filtered_count].name, name);
@@ -779,10 +704,8 @@ void terminal_show_by_group() {
     }
     
     fclose(file);
-    
 
     qsort(filtered_contacts, filtered_count, sizeof(Contact), compare_contacts);
-    
 
     printf("\n----- Contacts in group \"%s\" (%d contacts) -----\n", selected_group, filtered_count);
     for (int i = 0; i < filtered_count; i++) {
@@ -811,25 +734,21 @@ void terminal_search_contact() {
     char name[50], contact[15], email[50], group[20];
     
     while (!feof(file) && found < MAX_CONTACTS) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(name, line, sizeof(name) - 1);
         name[sizeof(name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contact, line, sizeof(contact) - 1);
         contact[sizeof(contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(email, line, sizeof(email) - 1);
         email[sizeof(email) - 1] = '\0';
         
-        // Read group
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(group, line, sizeof(group) - 1);
@@ -856,7 +775,6 @@ void terminal_search_contact() {
         return;
     }
 
-
     qsort(results, found, sizeof(Contact), compare_contacts);
 
     printf("\n--- Search Results (%d contacts) ---\n", found);
@@ -868,7 +786,6 @@ void terminal_search_contact() {
 
 
 void terminal_delete_contact() {
-
     FILE *file = fopen(CONTACTS_FILE, "r");
     if (file == NULL) {
         fprintf(stderr, "Error: Could not open contacts file.\n");
@@ -880,25 +797,21 @@ void terminal_delete_contact() {
 
     char line[256];
     while (!feof(file) && count < MAX_CONTACTS) {
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].name, line, sizeof(contacts[count].name) - 1);
         contacts[count].name[sizeof(contacts[count].name) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].contact, line, sizeof(contacts[count].contact) - 1);
         contacts[count].contact[sizeof(contacts[count].contact) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].email, line, sizeof(contacts[count].email) - 1);
         contacts[count].email[sizeof(contacts[count].email) - 1] = '\0';
         
-
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0';
         strncpy(contacts[count].group, line, sizeof(contacts[count].group) - 1);
@@ -909,7 +822,6 @@ void terminal_delete_contact() {
 
     fclose(file);
 
-
     qsort(contacts, count, sizeof(Contact), compare_contacts);
 
     printf("----- Contact List (%d contacts) -----\n", count);
@@ -917,18 +829,15 @@ void terminal_delete_contact() {
         printf("%d. Name: %s\n   Contact: %s\n   Email: %s\n   Group: %s\n\n", 
                i + 1, contacts[i].name, contacts[i].contact, contacts[i].email, contacts[i].group);
     }
-    
 
     int choice;
     printf("Enter number of the contact to delete (1-%d) or 0 to cancel: ", count);
     if (scanf("%d", &choice) != 1 || choice < 0 || choice > count) {
         printf("Invalid choice!\n");
-
         int c;
         while ((c = getchar()) != '\n' && c != EOF);
         return;
     }
-    
 
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -937,12 +846,10 @@ void terminal_delete_contact() {
         printf("Deletion cancelled.\n");
         return;
     }
-    
 
     char confirm;
     printf("Are you sure you want to delete %s? (y/n): ", contacts[choice-1].name);
     scanf("%c", &confirm);
-    
 
     while ((c = getchar()) != '\n' && c != EOF);
     
@@ -965,16 +872,18 @@ static void confirm_delete_response(GtkDialog *dialog, int response, gpointer us
         if (delete_contact_from_file(data->name, data->contact)) {
             g_print("Contact deleted from file: %s\n", data->name);
             
-
             gtk_list_store_clear(data->widgets->list_store);
             load_contacts(data->widgets);
             
-            // Reload groups
             gtk_list_store_clear(data->widgets->group_store);
             load_groups_for_filter(data->widgets);
             gtk_combo_box_set_active(GTK_COMBO_BOX(data->widgets->group_filter), 0);
+            
+            GtkTreeModelFilter *filter = GTK_TREE_MODEL_FILTER(
+                gtk_tree_view_get_model(GTK_TREE_VIEW(data->widgets->contact_list))
+            );
+            gtk_tree_model_filter_refilter(filter);
         } else {
-            // Show error dialog
             GtkWidget *error_dialog = gtk_dialog_new_with_buttons("Error",
                                                 GTK_WINDOW(data->widgets->window),
                                                 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1026,13 +935,11 @@ void terminal_mode_main() {
         printf("Enter choice: ");
         
         if (scanf("%d", &choice) != 1) {
-
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
             printf("Invalid input. Please enter a number.\n");
             continue;
         }
-        
 
         getchar();
 
@@ -1050,7 +957,7 @@ void terminal_mode_main() {
                 terminal_show_by_group();
                 break;
             case 5:
-                terminal_delete_contact();  
+                terminal_delete_contact();
                 break;
             case 6:
                 printf("Exiting program. Have a good day!\n");
@@ -1062,12 +969,10 @@ void terminal_mode_main() {
 }
 
 int main(int argc, char *argv[]) {
-    // Check for terminal mode flag
     if (argc > 1 && (strcmp(argv[1], "--terminal") == 0 || strcmp(argv[1], "-t") == 0)) {
         terminal_mode_main();
         return 0;
     }
-    
 
     GtkApplication *app = gtk_application_new("org.gtk.contactmanager", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);

@@ -1,109 +1,15 @@
-#define _GNU_SOURCE
-#include <gtk/gtk.h>
+/*
+ * main_backup.c
+ * Backup file for Contact Manager project
+ * This file is kept as a minimal stub for reference purposes
+ */
+
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-// Define the absolute path to the contacts file
-#define CONTACTS_FILE "/Users/mubinsompod/Documents/Code/c++/project_1-1/contacts.txt"
-#define MAX_CONTACTS 500
-
-typedef struct {
-    char name[50];
-    char contact[15];
-    char email[50];
-    char group[20];
-} Contact;
-
-// Forward declaration
-typedef struct _AppWidgets AppWidgets;
-
-typedef struct {
-    char *name;
-    char *contact;
-    AppWidgets *widgets;
-} DeleteDialogData;
-
-// Widgets that need to be accessed globally
-struct _AppWidgets {
-    GtkWidget *window;
-    GtkWidget *contact_list;
-    GtkWidget *name_entry;
-    GtkWidget *phone_entry;
-    GtkWidget *email_entry;
-    GtkWidget *group_entry;
-    GtkWidget *search_entry;
-    GtkWidget *group_filter;  // New: Group filter dropdown
-    GtkListStore *list_store;
-    GtkListStore *group_store; // For the group dropdown
-    GtkWidget *delete_button;  // New: Delete button
-    GtkTreeIter current_iter; // Store the current iterator for deletion
-};
-
-// Terminal mode functions
-void terminal_mode_main();
-void terminal_add_contact();
-void terminal_show_contacts();
-void terminal_search_contact();
-void terminal_show_by_group(); // New: Show contacts by group
-void terminal_delete_contact(); // New: Delete a contact
-
-// Sorting function for contacts
-int compare_contacts(const void *a, const void *b);
-
-// Function to get unique groups
-void get_unique_groups(char groups[][20], int *count);
-
-// Function to load groups for the filter dropdown
-void load_groups_for_filter(AppWidgets *widgets);
-
-// Function to delete a contact
-int delete_contact_from_file(const char *name, const char *contact);
-
-// Dialog response handlers
-static void confirm_delete_response(GtkDialog *dialog, int response, gpointer user_data);
-static void error_dialog_response(GtkDialog *dialog, int response, gpointer user_data);
-static void warning_dialog_response(GtkDialog *dialog, int response, gpointer user_data);
-
-// Sorting function for the name column
-static gint sort_by_name(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data) {
-    gchar *name_a, *name_b;
-    gint ret;
-    
-    // Get the names from the model
-    gtk_tree_model_get(model, a, 0, &name_a, -1);
-    gtk_tree_model_get(model, b, 0, &name_b, -1);
-    
-    // If both names are NULL, they are equal
-    if (name_a == NULL && name_b == NULL) {
-        return 0;
-    }
-    
-    // If only one name is NULL, it comes after a valid name
-    if (name_a == NULL) {
-        g_free(name_b);
-        return 1;
-    }
-    
-    if (name_b == NULL) {
-        g_free(name_a);
-        return -1;
-    }
-    
-    // Compare the names case-insensitively
-    ret = g_utf8_collate(g_utf8_casefold(name_a, -1), g_utf8_casefold(name_b, -1));
-    
-    g_free(name_a);
-    g_free(name_b);
-    
-    return ret;
-}
-
-// Compare contacts for sorting in terminal mode
-int compare_contacts(const void *a, const void *b) {
-    Contact *contactA = (Contact *)a;
-    Contact *contactB = (Contact *)b;
-    return strcasecmp(contactA->name, contactB->name);
+int main(void) {
+    printf("This is a backup file placeholder.\n");
+    printf("The main implementation is in main.c\n");
+    return 0;
 }
 
 static void add_contact_to_list(AppWidgets *widgets, const char *name, const char *phone, const char *email, const char *group) {

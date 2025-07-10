@@ -7,26 +7,26 @@ CMakeFiles/contact_manager.dir/main.c.o: \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gtypes.h \
   /opt/homebrew/Cellar/glib/2.84.1/lib/glib-2.0/include/glibconfig.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gmacros.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stddef.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stddef.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_header_macro.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_ptrdiff_t.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_size_t.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_wchar_t.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_null.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_max_align_t.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_offsetof.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_header_macro.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_ptrdiff_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_size_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_wchar_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_null.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_max_align_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_offsetof.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_posix_availability.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/ptrcheck.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/machine/limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arm/limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/arm/_limits.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/syslimits.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/float.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/float.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gversionmacros.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/glib-visibility.h \
@@ -74,13 +74,13 @@ CMakeFiles/contact_manager.dir/main.c.o: \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gatomic.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/glib-typeof.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gerror.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdarg.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg_header_macro.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg___gnuc_va_list.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg_va_list.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg_va_arg.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg___va_copy.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stdarg_va_copy.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_header_macro.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg___gnuc_va_list.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_list.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_arg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg___va_copy.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_copy.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gquark.h \
   /opt/homebrew/Cellar/glib/2.84.1/include/glib-2.0/glib/gutils.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
@@ -102,7 +102,7 @@ CMakeFiles/contact_manager.dir/main.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_sigset_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/resource.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint8_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_types/_uint16_t.h \
@@ -457,10 +457,10 @@ CMakeFiles/contact_manager.dir/main.c.o: \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb.h \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb-blob.h \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb-common.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/inttypes.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/inttypes.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_inttypes.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/__stddef_rsize_t.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_rsize_t.h \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb-script-list.h \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb-buffer.h \
   /opt/homebrew/Cellar/harfbuzz/11.2.0/include/harfbuzz/hb-unicode.h \
@@ -577,11 +577,11 @@ CMakeFiles/contact_manager.dir/main.c.o: \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene.h \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene-types.h \
   /opt/homebrew/Cellar/graphene/1.10.8/lib/graphene-1.0/include/graphene-config.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/arm_neon.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/arm_bf16.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/arm_vector_types.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_neon.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_bf16.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_vector_types.h \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene-macros.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/17/include/stdbool.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdbool.h \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene-version-macros.h \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene-version.h \
   /opt/homebrew/Cellar/graphene/1.10.8/include/graphene-1.0/graphene-simd4f.h \
